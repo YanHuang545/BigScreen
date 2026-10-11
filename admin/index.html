@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>指挥中心数据管理</title>
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div>
+        <h1>指挥中心数据管理</h1>
+        <p>修改后刷新大屏即可看到变化。大屏地址：<a href="http://127.0.0.1:5173/" target="_blank" rel="noreferrer">http://127.0.0.1:5173/</a></p>
+      </div>
+      <button type="button" id="reload">重新加载</button>
+    </header>
+    <nav class="tabs">
+      <button type="button" class="tab on" data-tab="metrics">地市指标</button>
+      <button type="button" class="tab" data-tab="events">安全事件</button>
+      <button type="button" class="tab" data-tab="filing">密评趋势</button>
+      <button type="button" class="tab" data-tab="system">系统趋势</button>
+      <button type="button" class="tab" data-tab="resource">资源趋势</button>
+      <button type="button" class="tab" data-tab="details">详情清单</button>
+    </nav>
+    <main id="app"></main>
+    <div id="message"></div>
+    <script src="./admin.js"></script>
+  </body>
+</html>

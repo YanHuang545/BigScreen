@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "beijing-weather": {
+      "command": "node",
+      "args": ["c:/codexPracticeFolder/BigScreen/backend/mcp-weather.js"]
+    }
+  }
+}
