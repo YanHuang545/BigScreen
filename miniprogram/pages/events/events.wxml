@@ -1,0 +1,9 @@
+<view class="page">
+  <view class="muted head">{{sourceHint}}</view>
+  <view class="card event {{item.status === '未处置' ? 'urgent' : ''}}" wx:for="{{events}}" wx:key="id">
+    <view class="title">事件：{{item.title}}</view>
+    <view class="meta">状态：{{item.status}}</view>
+    <view class="meta">上报时间：{{item.time}}</view>
+    <view wx:if="{{item.action}}" class="btn {{item.action === '立即处置' ? 'warn' : ''}}" data-id="{{item.id}}" bindtap="act">{{item.action}}</view>
+  </view>
+</view>

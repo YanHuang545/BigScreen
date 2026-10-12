@@ -1,0 +1,12 @@
+.hero .h1 { margin-bottom: 16rpx; }
+.weather { display: flex; flex-wrap: wrap; color: #d5e2f8; }
+.weather text { margin-right: 20rpx; }
+.hint { margin-top: 16rpx; color: #ffb4a2; font-size: 26rpx; }
+.source { color: #c9a15a; font-size: 24rpx; }
+.hero .row { margin-top: 16rpx; }
+.place { margin-top: 6rpx; font-size: 34rpx; color: #fff8ea; }
+.kpi { margin-bottom: 0; }
+.meta { margin-bottom: 10rpx; }
+.calls { display: flex; margin-top: 20rpx; }
+.calls .btn { flex: 1; margin-right: 16rpx; }
+.calls .btn:last-child { margin-right: 0; }

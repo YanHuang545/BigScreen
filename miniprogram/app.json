@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/map/map",
+    "pages/trend/trend",
+    "pages/events/events",
+    "pages/admin/admin",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#120e28",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "商用密码指挥中心",
+    "backgroundColor": "#0b1020",
+    "backgroundTextStyle": "light",
+    "backgroundColorTop": "#0b1020",
+    "backgroundColorBottom": "#0b1020"
+  },
+  "tabBar": {
+    "color": "#8ea0c8",
+    "selectedColor": "#f0d7a0",
+    "backgroundColor": "#120e22",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "总览",
+        "iconPath": "assets/home.png",
+        "selectedIconPath": "assets/home-on.png"
+      },
+      {
+        "pagePath": "pages/map/map",
+        "text": "区划",
+        "iconPath": "assets/map.png",
+        "selectedIconPath": "assets/map-on.png"
+      },
+      {
+        "pagePath": "pages/trend/trend",
+        "text": "趋势",
+        "iconPath": "assets/trend.png",
+        "selectedIconPath": "assets/trend-on.png"
+      },
+      {
+        "pagePath": "pages/events/events",
+        "text": "事件",
+        "iconPath": "assets/event.png",
+        "selectedIconPath": "assets/event-on.png"
+      },
+      {
+        "pagePath": "pages/admin/admin",
+        "text": "管理",
+        "iconPath": "assets/admin.png",
+        "selectedIconPath": "assets/admin-on.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

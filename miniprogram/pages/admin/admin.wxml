@@ -1,0 +1,102 @@
+<view class="page">
+  <view class="muted head">{{hint}}</view>
+  <view class="chips tabs">
+    <view class="chip {{item.id === tab ? 'on' : ''}}" wx:for="{{tabs}}" wx:key="id" data-id="{{item.id}}" bindtap="pickTab">{{item.label}}</view>
+  </view>
+
+  <block wx:if="{{tab === 'metrics'}}">
+    <view class="card">
+      <picker mode="selector" range="{{cityNames}}" value="{{cityIndex}}" bindchange="onCity">
+        <view class="row">
+          <view class="muted">当前区域</view>
+          <view class="gold">{{cityNames[cityIndex]}}</view>
+        </view>
+      </picker>
+    </view>
+    <view class="card">
+      <view class="field" wx:for="{{metricFields}}" wx:key="key">
+        <view class="muted">{{item.label}}</view>
+        <input class="input" data-key="{{item.key}}" value="{{item.value}}" bindinput="onMetricInput" />
+      </view>
+      <view class="btn" bindtap="saveMetric">保存该区域</view>
+    </view>
+  </block>
+
+  <block wx:if="{{tab === 'events'}}">
+    <view class="card">
+      <view class="btn" bindtap="addEvent">新增事件</view>
+    </view>
+    <view class="card" wx:for="{{eventRows}}" wx:key="id">
+      <view class="field">
+        <view class="muted">事件</view>
+        <input class="input" data-id="{{item.id}}" data-key="title" value="{{item.title}}" bindinput="onEventInput" />
+      </view>
+      <view class="field">
+        <view class="muted">状态</view>
+        <input class="input" data-id="{{item.id}}" data-key="status" value="{{item.status}}" bindinput="onEventInput" />
+      </view>
+      <view class="field">
+        <view class="muted">上报时间</view>
+        <input class="input" data-id="{{item.id}}" data-key="time" value="{{item.time}}" bindinput="onEventInput" />
+      </view>
+      <view class="field">
+        <view class="muted">操作按钮</view>
+        <input class="input" data-id="{{item.id}}" data-key="action" value="{{item.action}}" bindinput="onEventInput" />
+      </view>
+      <view class="actions">
+        <view class="btn" data-id="{{item.id}}" bindtap="saveEvent">保存</view>
+        <view class="btn warn" data-id="{{item.id}}" bindtap="deleteEvent">删除</view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if="{{tab === 'series'}}">
+    <view class="card">
+      <view class="chips">
+        <view class="chip {{item.id === seriesKind ? 'on' : ''}}" wx:for="{{seriesKinds}}" wx:key="id" data-id="{{item.id}}" bindtap="pickSeriesKind">{{item.label}}</view>
+      </view>
+      <picker mode="selector" range="{{cityNames}}" value="{{cityIndex}}" bindchange="onCity">
+        <view class="row">
+          <view class="muted">区域</view>
+          <view class="gold">{{cityNames[cityIndex]}}</view>
+        </view>
+      </picker>
+      <picker mode="selector" range="{{months}}" value="{{monthIndex}}" bindchange="onMonth">
+        <view class="row">
+          <view class="muted">月份</view>
+          <view class="gold">{{months[monthIndex]}}</view>
+        </view>
+      </picker>
+    </view>
+    <view class="card" wx:for="{{seriesPoints}}" wx:key="index" wx:for-index="index">
+      <view class="point-title">分类 {{index + 1}}</view>
+      <view class="field">
+        <view class="muted">名称</view>
+        <input class="input" data-index="{{index}}" data-key="label" value="{{item.label}}" bindinput="onSeriesInput" />
+      </view>
+      <view class="field" wx:for="{{item.values}}" wx:for-item="cell" wx:key="key">
+        <view class="muted">{{cell.label}}</view>
+        <input class="input" data-index="{{index}}" data-key="{{cell.key}}" value="{{cell.value}}" bindinput="onSeriesInput" />
+      </view>
+    </view>
+    <view class="card">
+      <view class="btn" bindtap="saveSeries">保存这组趋势</view>
+    </view>
+  </block>
+
+  <block wx:if="{{tab === 'details'}}">
+    <view class="card">
+      <view class="chips">
+        <view class="chip {{item.id === detailKind ? 'on' : ''}}" wx:for="{{detailKinds}}" wx:key="id" data-id="{{item.id}}" bindtap="pickDetailKind">{{item.label}}</view>
+      </view>
+      <view class="preview" bindtap="openDetail">查看只读明细页</view>
+    </view>
+    <view class="card" wx:for="{{detailRows}}" wx:key="id">
+      <view class="field" wx:for="{{item.cells}}" wx:for-item="cell" wx:key="key">
+        <view class="muted">{{cell.title}}</view>
+        <input class="input" data-id="{{item.id}}" data-index="{{cell.index}}" value="{{cell.value}}" bindinput="onDetailInput" />
+      </view>
+      <view class="btn" data-id="{{item.id}}" bindtap="saveDetail">保存</view>
+    </view>
+  </block>
+</view>

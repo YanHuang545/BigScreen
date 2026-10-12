@@ -1,0 +1,6 @@
+.kind, .series { margin-top: 16rpx; }
+.summary { margin-top: 20rpx; }
+.bar { margin-top: 18rpx; }
+.bar-top { display: flex; justify-content: space-between; margin-bottom: 8rpx; color: #d5e2f8; }
+.track { height: 14rpx; border-radius: 999rpx; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
+.fill { height: 100%; border-radius: 999rpx; background: linear-gradient(90deg, #8a6230, #f0d7a0); }

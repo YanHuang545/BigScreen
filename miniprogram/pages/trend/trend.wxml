@@ -1,0 +1,29 @@
+<view class="page">
+  <view class="card">
+    <view class="muted">{{city}}</view>
+    <view class="chips kind">
+      <view class="chip {{item.id === kind ? 'on' : ''}}" wx:for="{{kinds}}" wx:key="id" data-id="{{item.id}}" bindtap="pickKind">{{item.label}}</view>
+    </view>
+    <view class="grid-2 summary">
+      <view wx:for="{{summary}}" wx:key="label">
+        <view class="kpi-num">{{item.value}}</view>
+        <view class="muted">{{item.label}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="card">
+    <view class="chips">
+      <view class="chip {{item === month ? 'on' : ''}}" wx:for="{{months}}" wx:key="*this" data-month="{{item}}" bindtap="pickMonth">{{item}}</view>
+    </view>
+    <view class="chips series">
+      <view class="chip {{item.key === seriesKey ? 'on' : ''}}" wx:for="{{seriesList}}" wx:key="key" data-key="{{item.key}}" bindtap="pickSeries">{{item.label}}</view>
+    </view>
+    <view class="bar" wx:for="{{bars}}" wx:key="label">
+      <view class="bar-top">
+        <text>{{item.label}}</text>
+        <text>{{item.value}}{{unit}}</text>
+      </view>
+      <view class="track"><view class="fill" style="width: {{item.pct}}%;"></view></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+.head { margin-bottom: 16rpx; }
+.title { margin-bottom: 8rpx; font-size: 32rpx; color: #fff8ea; }
+.meta { color: #9aabc8; }
+.event .btn { margin-top: 16rpx; }
+.urgent { border-color: rgba(212, 103, 47, 0.8); }
