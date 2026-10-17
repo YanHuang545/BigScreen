@@ -30,18 +30,27 @@ async function load() {
   render()
 }
 
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+}
+
 function cityOptions(selected) {
-  return data.cities.map((city) => `<option value="${city.name}" ${city.name === selected ? 'selected' : ''}>${city.name}</option>`).join('')
+  return data.cities.map((city) => `<option value="${escapeHtml(city.name)}" ${city.name === selected ? 'selected' : ''}>${escapeHtml(city.name)}</option>`).join('')
 }
 
 function field(name, value) {
-  return `<input data-field="${name}" value="${value ?? ''}" />`
+  return `<input data-field="${escapeHtml(name)}" value="${escapeHtml(value)}" />`
 }
 
 function renderMetrics() {
   const rows = data.cities.map((city) => `
-    <tr data-city="${city.name}">
-      <td>${city.name}</td>
+    <tr data-city="${escapeHtml(city.name)}">
+      <td>${escapeHtml(city.name)}</td>
       <td>${field('contact', city.contact)}</td>
       <td>${field('orgs', city.metrics.orgs)}</td>
       <td>${field('systems', city.metrics.systems)}</td>
@@ -57,7 +66,7 @@ function renderMetrics() {
       <td>${field('offlineSys', city.metrics.offlineSys)}</td>
       <td>${field('onlineRes', city.metrics.onlineRes)}</td>
       <td>${field('offlineRes', city.metrics.offlineRes)}</td>
-      <td><button type="button" data-save-metric="${city.name}">保存</button></td>
+      <td><button type="button" data-save-metric="${escapeHtml(city.name)}">保存</button></td>
     </tr>
   `).join('')
   app.innerHTML = `
@@ -78,14 +87,14 @@ function renderMetrics() {
 
 function renderEvents() {
   const rows = data.events.map((event) => `
-    <tr data-id="${event.id}">
+    <tr data-id="${escapeHtml(event.id)}">
       <td>${field('title', event.title)}</td>
       <td>${field('status', event.status)}</td>
       <td>${field('time', event.time)}</td>
       <td>${field('action', event.action)}</td>
       <td>
-        <button type="button" data-save-event="${event.id}">保存</button>
-        <button type="button" class="danger" data-delete-event="${event.id}">删除</button>
+        <button type="button" data-save-event="${escapeHtml(event.id)}">保存</button>
+        <button type="button" class="danger" data-delete-event="${escapeHtml(event.id)}">删除</button>
       </td>
     </tr>
   `).join('')
@@ -142,8 +151,8 @@ function renderSeries(kind) {
     <section class="panel">
       <div class="toolbar">
         <label>地市 <select id="series-city">${cityOptions(seriesCity)}</select></label>
-        <label>月份 <select id="series-month">${data.months.map((month) => `<option ${month === seriesMonth ? 'selected' : ''}>${month}</option>`).join('')}</select></label>
-        <button type="button" id="save-series" data-kind="${kind}">保存这组趋势</button>
+        <label>月份 <select id="series-month">${data.months.map((month) => `<option ${month === seriesMonth ? 'selected' : ''}>${escapeHtml(month)}</option>`).join('')}</select></label>
+        <button type="button" id="save-series" data-kind="${escapeHtml(kind)}">保存这组趋势</button>
       </div>
       <table>
         <thead><tr><th>分类</th>${head}</tr></thead>
@@ -154,9 +163,9 @@ function renderSeries(kind) {
 
 function renderDetails() {
   const rows = (data.details[detailKind] || []).map((row) => `
-    <tr data-id="${row.id}">
+    <tr data-id="${escapeHtml(row.id)}">
       ${row.cells.map((cell, index) => `<td>${field(`c${index}`, cell)}</td>`).join('')}
-      <td><button type="button" data-save-detail="${row.id}">保存</button></td>
+      <td><button type="button" data-save-detail="${escapeHtml(row.id)}">保存</button></td>
     </tr>
   `).join('')
   const titles = {

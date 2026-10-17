@@ -111,7 +111,7 @@ app.put('/api/series/:kind', asyncRoute(async (req, res) => {
     if (req.params.kind === 'filing') {
       await conn.query('DELETE FROM filing_points WHERE city=? AND month=?', [city, month])
       if (points.length) {
-        const marks = points.map(() => '(?,?,?,?,?,?,?)').join(',')
+        const marks = points.map(() => '(?,?,?,?,?,?,?,?)').join(',')
         const values = points.flatMap((point, index) => [city, month, index, point.label, point.filed, point.testing, point.passed, point.failed])
         await conn.query(
           `INSERT INTO filing_points (city, month, point_index, label, filed, testing, passed, failed) VALUES ${marks}`,

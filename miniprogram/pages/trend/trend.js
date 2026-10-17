@@ -94,6 +94,7 @@ Page({
     const metrics = (current && current.metrics) || {}
     this.setData(session.plain({
       city: session.city(),
+      kind: this.data.kind,
       months,
       month,
       seriesList: spec.series,
@@ -110,8 +111,11 @@ Page({
 
   pickKind(event) {
     const kind = event.currentTarget.dataset.id
-    this.data.kind = kind
-    this.data.seriesKey = KINDS[kind].series[0].key
+    if (!KINDS[kind] || kind === this.data.kind) return
+    this.setData({
+      kind,
+      seriesKey: KINDS[kind].series[0].key,
+    })
     this.render()
   },
 
